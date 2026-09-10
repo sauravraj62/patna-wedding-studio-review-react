@@ -58,7 +58,7 @@ a { color: inherit; }
   opacity: .7;
 }
 
-h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3, h4, p { margin-top: 0; }
 
 h1 {
   font-family: "Playfair Display", Georgia, serif;
@@ -122,20 +122,20 @@ h1 {
   margin-bottom: 18px;
 }
 
-.issue-grid, .evidence-grid {
+.issue-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
 
-.issue-card, .evidence-placeholder {
+.issue-card {
   background: #fff;
   border: 1px solid #e5e1da;
   border-radius: 18px;
   padding: 30px;
 }
 
-.issue-number, .evidence-placeholder span {
+.issue-number {
   display: inline-flex;
   font-size: 12px;
   font-weight: 700;
@@ -144,17 +144,93 @@ h1 {
   color: #777;
 }
 
-.issue-card h3, .evidence-placeholder h3 {
+.issue-card h3 {
   font-size: 21px;
   margin-bottom: 10px;
 }
 
-.issue-card p, .evidence-placeholder p { color: #666; }
+.issue-card p { color: #666; }
 
-.issue-card a {
+.issue-grid { align-items: start; }
+
+.issue-photo { margin: 24px 0 0; }
+
+.issue-photo a { display: block; }
+
+.issue-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+}
+
+.issue-photo figcaption {
+  margin-top: 12px;
+  color: #666;
   font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
+}
+
+.payment-summary {
+  --payment-paid: #166b59;
+  --payment-pending: #9b3a46;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e1da;
+}
+
+.payment-summary h4 { font-size: 16px; margin-bottom: 20px; }
+
+.payment-amounts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 12px;
+  margin: 0 0 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.payment-total { grid-column: 1 / -1; }
+.payment-amounts dt { font-size: 13px; margin-bottom: 4px; }
+.payment-amounts dd { margin: 0; font-size: 18px; font-weight: 700; }
+.payment-total dd { font-size: 26px; }
+.payment-paid { color: var(--payment-paid); }
+.payment-pending { color: var(--payment-pending); }
+
+.payment-progress {
+  height: 14px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--payment-pending);
+}
+
+.payment-progress-paid {
+  display: block;
+  height: 100%;
+  background: var(--payment-paid);
+  transform-origin: left;
+}
+
+.payment-progress.is-visible .payment-progress-paid {
+  animation: payment-fill 1.2s cubic-bezier(.2, .7, .3, 1) both;
+}
+
+.payment-percentages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes payment-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-progress.is-visible .payment-progress-paid { animation: none; }
 }
 
 .timeline { background: #ece9e3; max-width: none; padding-left: max(6vw, calc((100vw - 1180px)/2)); padding-right: max(6vw, calc((100vw - 1180px)/2)); }
@@ -201,7 +277,7 @@ footer {
 @media (max-width: 700px) {
   .hero { padding-bottom: 65px; }
   .hero-content { margin-top: 65px; }
-  .issue-grid, .evidence-grid, .response { grid-template-columns: 1fr; }
+  .issue-grid, .response { grid-template-columns: 1fr; }
   .section { padding-top: 65px; padding-bottom: 65px; }
   .nav { height: 70px; }
   .brand { font-size: 13px; }
