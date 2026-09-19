@@ -164,6 +164,16 @@ function PaymentSummary() {
         <span>{paidPercentage.toFixed(1)}% paid</span>
         <span>{(100 - paidPercentage).toFixed(1)}% pending</span>
       </div>
+      <ol className="payment-history" aria-label="Payment history">
+        <li>
+          <time dateTime="2026-01-06">6 January 2026</time>
+          <strong>50% paid</strong>
+        </li>
+        <li>
+          <time dateTime="2026-01-29">29 January 2026</time>
+          <strong>Payment completed to 95%</strong>
+        </li>
+      </ol>
     </div>
   );
 }
